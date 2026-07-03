@@ -1,137 +1,298 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mis 18 Años</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mis 18 Años</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+}
 
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: #0b0b0f;
-      color: white;
-      overflow-x: hidden;
-    }
+body{
+  font-family:'Montserrat',sans-serif;
+  background:#07070c;
+  color:white;
+  overflow-x:hidden;
+}
 
-    /* HERO */
-    .hero {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background: radial-gradient(circle at top, #1a1a2e, #0b0b0f);
-      position: relative;
-    }
+/* ===== INTRO CINEMATOGRÁFICO ===== */
+#intro{
+  position:fixed;
+  width:100%;
+  height:100vh;
+  background:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:999;
+  animation:fadeOut 1s ease 4s forwards;
+}
 
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      margin-bottom: 10px;
-      animation: fadeIn 2s ease;
-    }
+#intro h1{
+  font-family:'Playfair Display',serif;
+  font-size:2.5rem;
+  letter-spacing:2px;
+  animation:zoomIn 2s ease;
+}
 
-    .hero p {
-      font-size: 1rem;
-      opacity: 0.8;
-      margin-bottom: 25px;
-      animation: fadeIn 3s ease;
-    }
+#intro p{
+  opacity:0.7;
+  margin-top:10px;
+}
 
-    .btn {
-      padding: 12px 25px;
-      border: 1px solid white;
-      background: transparent;
-      color: white;
-      cursor: pointer;
-      border-radius: 30px;
-      transition: 0.3s;
-      text-decoration: none;
-    }
+/* ===== FONDO PARTÍCULAS ===== */
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-1;
+}
 
-    .btn:hover {
-      background: white;
-      color: black;
-      transform: scale(1.05);
-    }
+/* ===== HERO ===== */
+.hero{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
 
-    /* CONTADOR */
-    .contador {
-      margin-top: 30px;
-      font-size: 1.2rem;
-      letter-spacing: 2px;
-    }
+.glass{
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(14px);
+  padding:40px;
+  border-radius:25px;
+  border:1px solid rgba(255,255,255,0.1);
+  box-shadow:0 0 40px rgba(0,0,0,0.6);
+  animation:fadeUp 2s ease;
+}
 
-    /* SECCION */
-    .section {
-      padding: 80px 20px;
-      text-align: center;
-    }
+h1{
+  font-family:'Playfair Display',serif;
+  font-size:3rem;
+}
 
-    .section h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
+p{
+  opacity:0.8;
+  margin:10px 0 20px;
+}
 
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-  </style>
+/* BOTÓN */
+.btn{
+  display:inline-block;
+  padding:12px 28px;
+  border-radius:50px;
+  border:1px solid white;
+  color:white;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:white;
+  color:black;
+  transform:scale(1.05);
+}
+
+/* CONTADOR */
+#contador{
+  margin-top:15px;
+  font-size:1.3rem;
+  letter-spacing:2px;
+}
+
+/* SECCIONES */
+.section{
+  padding:100px 20px;
+  text-align:center;
+}
+
+.section h2{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;
+  margin-bottom:15px;
+}
+
+/* TIMELINE */
+.timeline{
+  max-width:600px;
+  margin:auto;
+  text-align:left;
+  border-left:2px solid rgba(255,255,255,0.2);
+  padding-left:20px;
+}
+
+.event{
+  margin-bottom:30px;
+  opacity:0;
+  transform:translateY(30px);
+  transition:1s;
+}
+
+.event.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* WHATSAPP */
+#wsp{
+  margin-top:20px;
+}
+
+/* ANIMACIONES */
+@keyframes fadeOut{
+  to{opacity:0; visibility:hidden;}
+}
+
+@keyframes zoomIn{
+  from{transform:scale(1.5); opacity:0;}
+  to{transform:scale(1); opacity:1;}
+}
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+</style>
 </head>
 
 <body>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h1>Mis 18 Años</h1>
-    <p>Estás invitado a una noche inolvidable</p>
+<!-- INTRO -->
+<div id="intro">
+  <h1>Mis 18 Años</h1>
+  <p>Una experiencia única está por comenzar</p>
+</div>
 
-    <a class="btn" href="#contador">Ver invitación</a>
+<!-- PARTICULAS -->
+<canvas id="particles"></canvas>
 
-    <div class="contador" id="contador">
-      Cargando contador...
-    </div>
-  </section>
+<!-- HERO -->
+<section class="hero">
+  <div class="glass">
+    <h1>Te Invito</h1>
+    <p>Una noche inolvidable</p>
 
-  <!-- INFO -->
-  <section class="section">
-    <h2>Celebración</h2>
-    <p>Una noche especial para compartir con personas importantes.</p>
-  </section>
+    <a class="btn" href="#info">Entrar</a>
 
-  <script>
-    // 🎯 CONTADOR SIMPLE
-    const targetDate = new Date("2026-09-01T21:00:00").getTime();
+    <div id="contador">Cargando contador...</div>
+  </div>
+</section>
 
-    const countdown = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
+<!-- INFO -->
+<section class="section" id="info">
+  <h2>Evento</h2>
+  <p>Mis 18 años - celebración especial</p>
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  <h2>Fecha</h2>
+  <p>01 / 09 / 2026 - 21:00 hs</p>
 
-      document.getElementById("contador").innerHTML =
-        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  <h2>Lugar</h2>
+  <p>Salón de eventos</p>
 
-      if (distance < 0) {
-        clearInterval(countdown);
-        document.getElementById("contador").innerHTML = "¡Hoy es el gran día!";
-      }
-    }, 1000);
-  </script>
+  <a class="btn" id="wsp">Confirmar asistencia</a>
+</section>
+
+<!-- TIMELINE -->
+<section class="section">
+  <h2>Mi Historia</h2>
+
+  <div class="timeline">
+    <div class="event">👶 Mi infancia</div>
+    <div class="event">🎒 Mis primeros pasos</div>
+    <div class="event">📚 Creciendo y aprendiendo</div>
+    <div class="event">🎉 Llegó el gran día: 18 años</div>
+  </div>
+</section>
+
+<script>
+
+/* ===== CONTADOR ===== */
+const target = new Date("2026-09-01T21:00:00").getTime();
+
+setInterval(()=>{
+  const now = new Date().getTime();
+  const d = target - now;
+
+  const days = Math.floor(d/(1000*60*60*24));
+  const hours = Math.floor((d%(1000*60*60*24))/(1000*60*60));
+  const mins = Math.floor((d%(1000*60*60))/(1000*60));
+  const secs = Math.floor((d%(1000*60))/1000);
+
+  document.getElementById("contador").innerHTML =
+  `⏳ ${days}d ${hours}h ${mins}m ${secs}s`;
+
+},1000);
+
+/* ===== WHATSAPP ===== */
+document.getElementById("wsp").addEventListener("click", ()=>{
+  const msg = "Hola! Confirmo mi asistencia a los 18 años 🎉 Nombre: ____ Acompañante: ____";
+  window.open("https://wa.me/549XXXXXXXXXX?text=" + encodeURIComponent(msg), "_blank");
+});
+
+/* ===== TIMELINE ANIMATION ===== */
+const events = document.querySelectorAll(".event");
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+});
+
+events.forEach(e=>observer.observe(e));
+
+/* ===== PARTÍCULAS ===== */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for(let i=0;i<80;i++){
+  particles.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    r:Math.random()*2,
+    dx:(Math.random()-0.5)*0.5,
+    dy:(Math.random()-0.5)*0.5
+  });
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  particles.forEach(p=>{
+    p.x += p.dx;
+    p.y += p.dy;
+
+    if(p.x<0||p.x>canvas.width) p.dx*=-1;
+    if(p.y<0||p.y>canvas.height) p.dy*=-1;
+
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle="white";
+    ctx.fill();
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+</script>
 
 </body>
 </html>
