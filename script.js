@@ -31,21 +31,15 @@ updateCountdown();
    📲 WHATSAPP RSVP
 ========================= */
 document.getElementById("wsp").addEventListener("click", () => {
-  const phone = "549XXXXXXXXXX"; // CAMBIAR NÚMERO
 
-  const message = `
-🎉 Confirmación de asistencia - Mis 18 años
+  const phone = "541128354615";
 
-👤 Nombre:
-✔ Asistiré: Sí / No
-👥 Acompañante:
-💬 Mensaje: Confirmo mi asistencia
-`;
+  const message = "Confirmo mi asistencia 🎉";
 
   const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+
   window.open(url, "_blank");
 });
-
 
 /* =========================
    🎬 INTRO CINEMÁTICO
